@@ -1,0 +1,31 @@
+import java.io.BufferedReader;
+//효율적인 입력처리를 위해 BufferedReader 사용
+import java.io.InputStreamReader;
+//바이트스트림을 문자스트림으로 변환하기 위해 사용
+import java.io.IOException;
+//입출력 작업 중 발생할 수 있는 예외를 처리하기 위해 사용
+import java.util.StringTokenizer;
+//문자열을 특정구분자를 기준으로 나누기 위해 사용
+ 
+public class Main {
+ 
+	public static void main(String[] args) throws IOException {
+//throws IOException 은 예외가 발생했을 때 이를 호출자에게 던진다는 것을 의미한다.
+        
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//BufferedReader 객체를 생성하여 System.in = 입력 된 데이터를 읽는데, 이 데이터를 먼저 inputstreamreader로 바이트스트림->문자스트림으로 변환한다.
+//이후에 bufferedreader로 효율적으로 입력을 받는다.
+ 
+ 		String str = br.readLine();
+//위의 한줄의 데이터값을 문자열로 읽어온다. 한줄인 이유는 백준에서의 입력방식이 예) 1.231213 4.5 이러한 방식으로 스페이스바로 구분되는 형식이기 때문이다.
+		StringTokenizer st = new StringTokenizer(str," ");
+//위에서의 str값을  " "=빈칸 으로 나눈다. => 문자열을 토큰단위로 나눠서 저장한다.
+		double a = Double.parseDouble(st.nextToken());
+//위에서 토큰단위로 나눠져서 저장된값의 첫번째 값을 double타입으로 변환한 후 a에 저장한다. 이후에 나머지 토큰값들은 nextToken에 의해 반환된다.
+		double b = Double.parseDouble(st.nextToken());
+//a에 할당된 토큰값 이후 다른값들 중에 하나를 가져온다. 마찬가지로 나머지 값들은 반환된다.
+		
+		System.out.println(a/b);
+	
+	}
+}
