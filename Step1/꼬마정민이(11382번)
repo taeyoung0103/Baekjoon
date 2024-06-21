@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main{
+    public static void main(String[] args) throws IOException {
+        
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ 
+ 		String str = br.readLine();
+		StringTokenizer st = new StringTokenizer(str," ");
+//문제가 한줄에 숫자를 쭉 적고, 구분은 띄어쓰기로 한다고 해서 tokenizer사용
+		long a = Long.parseLong(st.nextToken());
+    long b = Long.parseLong(st.nextToken());
+    long c = Long.parseLong(st.nextToken());
+//처음에 틀렸었는데, 문제에서 10의12승까지 숫자를 입력한다고 설명 - 긴 숫자는 int나 double 이 아닌, long을 사용해야함
+		
+		System.out.println(a+b+c);
+
+        }
+}
