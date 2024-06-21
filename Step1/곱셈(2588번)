@@ -1,0 +1,33 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+//성능향성을 위해 bufferedreader 사용
+//입력되는값을 읽기 위해 inputstreamreader 사용
+//예외값처리를 위해 IOException 사용
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+//예외값이 있으면 던진다.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//입력되는 값을 bufferreader로 처리
+        int A = Integer.parseInt(br.readLine());
+//그 줄에 있는 값을 정수값으로 바꾸고 A에 저장
+        int B = Integer.parseInt(br.readLine());
+//그 다음줄에 있는 값을 정수값으로 바꾸고 B에 저장
+        
+        StringBuilder sb = new StringBuilder();
+//생성한후에 문자열을 변경할수 있는 기능. 아래와 같이 append를 같이 사용한다면 숫자값을 문자열로 변환하여 추가하는 기능이다.
+        sb.append(A*(B%10));
+//B%10 -> B값의 1의자리숫자를 구하는기능
+        sb.append('\n');
+//위에값이 출력되면 한줄 띄어쓰기
+        sb.append(A*((B%100)/10));
+// B를 100으로 나눈 나머지값 - B=456이라면 B%100 = 56 - 후에 값을 10으로 나눈다. -> 56/10 = 5 (정수값이므로) 
+        sb.append('\n');
+        sb.append(A*(B/100));
+        sb.append('\n');
+        sb.append(A*B);
+        sb.append('\n');
+        System.out.println(sb);
+    }
+}
