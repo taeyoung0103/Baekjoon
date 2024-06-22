@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ 		String str = br.readLine();
+		StringTokenizer st = new StringTokenizer(str," ");
+		int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+
+        int c = Integer.parseInt(br.readLine());
+
+        int total = b + c;
+
+        if (total < 60) {
+            System.out.println(a + " " + total);
+              //입력되는 분값과 기존의 분값이 60이 넘어가지 않으면 그대로 합해서 출력
+        } else {
+            int d = total / 60;
+            int e = total % 60;
+          // 만약 입력되는 분값과 기존의 분값이 60이 넘어가면 60으로 나눠서 나눈값의 몫과 나머지를 따로 저장
+            if((a+d) < 24){
+                System.out.println((a + d) + " " + e);
+                  //기존 a값과 나눈값의 몫값이 24가 안넘어가면 a+d를 그대로 출력
+            } else{
+                int f = (a+d) % 24;
+                System.out.println(f + " " + e);
+                  //기존 a값과 나눈값의 몫값이 24가 넘어가면 나머지값인 f를 출력
+            }
+        }
+}
+}
