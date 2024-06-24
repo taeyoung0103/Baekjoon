@@ -1,0 +1,83 @@
+// 백준 2480번은 3개의 값만 사용되지만, 더 많은 값들이 입력될 경우를 위해 검색 및 GPT사용으로 작성한 코드입니다.
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+//BufferedReader와 InputStreamReader는 표준 입력을 읽기 위해 사용됩니다.
+import java.io.IOException;
+//IOException은 입출력 오류를 처리하기 위해 사용됩니다.
+import java.util.HashMap;
+import java.util.Map;
+//HashMap과 Map은 주사위 눈의 빈도를 계산하기 위해 사용됩니다.
+import java.util.StringTokenizer;
+//StringTokenizer는 입력 문자열을 토큰으로 분리하는 데 사용됩니다.
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        // 주사위 눈 입력 받기
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str, " ");
+        
+        // 주사위 눈을 저장할 배열
+        int[] dice = new int[st.countTokens()];
+//countTokens 메소드를 사용해서 입력된 주사위 눈의 수를 세고, 이를 배열의 크기로 사용한다.
+        int i = 0;
+        while (st.hasMoreTokens()) {
+            dice[i++] = Integer.parseInt(st.nextToken());
+        }
+    //while루프를 사용해서 가지고있는(남아있는?) 토큰개수를 배열에 쭉 저장한다.
+        
+        int prize = calculatePrize(dice);
+        System.out.println(prize);
+    }
+
+    private static int calculatePrize(int[] dice) {
+        Map<Integer, Integer> counts = new HashMap<>();
+        //calculatePrize메소드는 입력받는 값으로 주사위 눈배열값을 입력받을것이다.
+//hashmap은 주사위 눈의 빈도를 저장하는데 사용
+        // 주사위 눈의 빈도 계산
+        for (int num : dice) {
+            counts.put(num, counts.getOrDefault(num, 0) + 1);
+        }
+//for-each루프를 사용해서 각 주사위 눈을 순회한다.
+//getOrDefault메소드를 사용하여 현재 눈의 빈도를 가져오고, 없으면 0을 기본값으로 한다. 중복되는 값을 발견하면 빈도를 1 증가시킨다.
+        
+        int maxCount = 0;
+        int maxValue = 0;
+        //maxCount = 가장 빈도가 높은 눈
+        //maxValue = 가장 빈도가 높은 눈의 빈도값
+        // 빈도 및 값 찾기
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            int value = entry.getKey();
+            int count = entry.getValue();
+            
+            if (count > maxCount || (count == maxCount && value > maxValue)) {
+                maxCount = count;
+                maxValue = value;
+            }
+        }
+        
+        int prize = 0;
+        //prize 변수를 사용해서 밑에 값들을 구할것이다.
+        if (maxCount == 3) {
+            // 같은 눈이 3개인 경우
+            prize = 10000 + maxValue * 1000;
+        } else if (maxCount == 2) {
+            // 같은 눈이 2개인 경우
+            prize = 1000 + maxValue * 100;
+        } else {
+            // 모두 다른 눈인 경우
+            int maxDiceValue = 0;
+//눈금값이 모두 다르면 그중에 가장 큰 값을 찾아야하기 때문에 maxDiceValue 변수를 if문에서 생성하고 구한다.
+            for (int value : dice) {
+                if (value > maxDiceValue) {
+                    maxDiceValue = value;
+                }
+            }
+            prize = maxDiceValue * 100;
+        }
+
+        return prize;
+    }
+}
