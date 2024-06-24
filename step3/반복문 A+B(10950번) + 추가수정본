@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // 첫 번째 줄을 읽어서 T에 저장
+        int T = Integer.parseInt(br.readLine());
+//필자는 문제에서 첫번째 줄에 테스트케이스 숫자인 T를 입력한다는 말을 못봐서 틀렸었다.
+
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
+
+        // T번 반복
+        for (int i = 0; i < T; i++) {
+            // 한 줄을 읽어서 StringTokenizer로 분리
+            st = new StringTokenizer(br.readLine());
+            // 첫 번째 토큰과 두 번째 토큰을 정수로 변환하여 더함
+            sb.append(Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken()));
+            // 결과를 StringBuilder에 추가하고 줄 바꿈
+            sb.append('\n');
+        }
+        // 결과 출력
+        System.out.println(sb);
+    }
+}
+
+//첫번째 줄에 T값을 입력하고 진행하는경우
+-------------------------------------------------------
+
+//첫번째 줄에 테스트케이스값인 T값을 입력안하고 진행하는경우
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
+        String line;
+
+        // 입력이 null이 아닐 때까지 반복
+        while ((line = br.readLine()) != null) {
+//그줄에 입력된 값이 없으면 종료 - 줄을 띄어쓰지 않고 계속 숫자를 입력하지않는다는 전제하에
+            st = new StringTokenizer(line, " ");
+            if (st.countTokens() == 2) {  // 각 줄에서 두 개의 숫자가 있는지 확인
+//숫자가 2개면 빈칸 하나로 구분해서 값을 읽고, 그 값 2개를 더한후에 출력
+                int a = Integer.parseInt(st.nextToken());
+                int b = Integer.parseInt(st.nextToken());
+                sb.append(a + b).append('\n');  // 두 숫자를 더하고 StringBuilder에 추가
+            } else {
+                System.out.println("Each line must contain exactly two numbers.");
+//2개가 아니면 2개를 입력해야한다 라는 글을 출력하고 프로그램 종료
+                return;  // 프로그램을 종료
+            }
+        }
+        System.out.print(sb);  // 모든 결과를 한 번에 출력
+    }
+}
