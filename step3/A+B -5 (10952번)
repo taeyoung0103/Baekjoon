@@ -1,0 +1,26 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+//입력된 것들을 읽을건데, 그전에 while문이라는 조건문을 준다
+        while (true) {
+            String str = br.readLine();
+            StringTokenizer st = new StringTokenizer(str, " ");
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+//while문을 돌리다가 a=0이고 b=0 이면 끝낸다.
+            if (a == 0 && b == 0) {
+                break;
+            }
+
+            sb.append(a + b).append('\n');
+        }
+        
+        System.out.println(sb);
+    }
+}
