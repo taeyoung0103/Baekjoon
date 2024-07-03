@@ -1,0 +1,74 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class b_2562 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+// BufferedReader로 읽을것이다
+        int arr[] = new int[9];
+// 문제에서 숫자를 9개를 입력한다고 정해놨기 때문에 배열 크기도 9로 고정해놓는다.
+        int max = arr[0]; 
+// 최댓값을 담을 변수
+        int index = 0; 
+// 최댓값의 위치를 담는 변수
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+            if (max < arr[i]) {
+                max = arr[i];
+                index = i+1;
+            }
+        }
+        System.out.println(max);
+        System.out.println(index);
+    }
+}
+
+
+----------------------------------------------------
+
+// 만약 숫자개수가 정해져 있지 않고, 빈 줄 전까지 숫자가 입력된다는 조건일경우
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+// 위와 다르게, 크기가 변동될수 있으므로, 동적인 크기를 가지는 arraylist사용
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+// input이라는 변수를 먼저 만들고
+        String input;
+
+        // while문으로 input이 줄을 읽을건데, 해당줄에 null이 아니거나 빈줄이 아니면 numbers라는 arraylist에 값을 집어넣는다.
+        while ((input = br.readLine()) != null && !input.isEmpty()) {
+            numbers.add(Integer.parseInt(input));
+        }
+// 만약 numbers arraylist크기가 0이면 nothing이라는 것을 출력시킨다.
+        if (numbers.size() == 0) {
+            System.out.println("Nothing");
+            return;
+        }
+
+// max는 최대값을 구하기위해 설정. Integer.MIN_VALUE라고 설정한이유는 값이 음수일수도 있으므로 0이아닌 저렇게 설정
+// index 는 최대값의 위치를 알기위해 변수 설정. 배열에서의 위치를 알고싶으면 -1로 설정, 입력된 줄의 위치를 알고싶으면 0으로 설정
+        int max = Integer.MIN_VALUE;
+        int index = 0;
+
+        for (int i = 0; i < numbers.size(); i++) {
+            int num = numbers.get(i);
+// for문을 돌리면서 값을 num에 넣을거고, 이 num값이 max보다 크면 max에 값을 넣고 index에는 i값 +1 한 값으로 변경한다.
+            if (num > max) {
+                max = num;
+                index = i + 1; 
+            }
+        }
+
+        System.out.println("Max : " + max);
+        System.out.println("Position: " + index);
+    }
+}
