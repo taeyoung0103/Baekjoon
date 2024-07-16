@@ -1,0 +1,44 @@
+//1차시도 - 오답
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            while (true) {
+                String line = br.readLine();
+                if (line == null || line.isEmpty()) {
+                    break;
+                }
+                try {
+                    int number = Integer.parseInt(line.trim());
+                    numbers.add(number);
+                } catch (NumberFormatException e) {
+                    System.out.println("유효한 숫자를 입력하세요.");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Set<Integer> remainders = new HashSet<>();
+
+        for (int number : numbers) {
+            remainders.add(number % 42);
+        }
+
+        System.out.println("중복을 제거한 나머지 값들: ");
+        for (int remainder : remainders) {
+            System.out.print(remainder + " ");
+        }
+        
+        System.out.println("\n중복을 제거한 나머지 값들의 개수: " + remainders.size());
+    }
+}
