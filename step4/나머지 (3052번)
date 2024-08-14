@@ -42,3 +42,28 @@ public class Main {
         System.out.println("\n중복을 제거한 나머지 값들의 개수: " + remainders.size());
     }
 }
+
+//2차시도
+import java.util.HashSet;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+ 
+public class Main {
+ 
+	public static void main(String[] args) throws IOException {
+		//bufferedreader로 읽고,
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//중복값을 무시하면서 리스트에 저장하는 hashset를 사용하고
+		HashSet<Integer> h = new HashSet<Integer>();
+ 
+		//for문을 돌리는데, br로 라인에 숫자를 읽어서 42로 나누고 나눈값을 리스트에 저장하는데, 중복값이면 저장하지않는다.
+		for (int i = 0; i < 10; i++) {
+			h.add(Integer.parseInt(br.readLine()) % 42);
+		}
+		
+		System.out.print(h.size());
+	}
+}
+}
+
