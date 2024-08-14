@@ -1,0 +1,62 @@
+// 1차시도 - 컴파일에러 투성
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Collections;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = Integer.parseInt(br.readLine());
+        int[] arr = new int[a];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i=0; i<a; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        int max = Collections.max(arr); // arr는 배열이므로 collection타입을 사용할 수 없다.
+        float b = max/a;
+        if(b>100) {
+            return 100;
+        }
+        System.out.println(b);
+        br.close();
+    }
+}
+
+//2차시도 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int a = Integer.parseInt(br.readLine());
+        int[] arr = new int[a];
+
+        // 입력받은 문자열을 공백을 기준으로 나누어 배열에 저장
+        String[] inputNumbers = br.readLine().split(" ");
+        for (int i = 0; i < a; i++) {
+            arr[i] = Integer.parseInt(inputNumbers[i]);
+        }
+
+        // 최대값 찾기
+        int max = Arrays.stream(arr).max().getAsInt();
+
+        // 최대값을 a로 나누기
+        float b = (float) max / a;
+
+        if (b > 100) {
+            System.out.println(100);
+        } else {
+            System.out.println(b);
+        }
+
+        br.close();
+    }
+}
