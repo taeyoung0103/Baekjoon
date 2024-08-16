@@ -1,0 +1,18 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //첫번째 줄을 읽은 후 저장
+        String a = br.readLine();
+        //length()는 문자열의 길이를 구하는데 사용된다.
+        int n = a.length();
+		
+		br.close();
+		
+		System.out.println(n);
+    }
+}
