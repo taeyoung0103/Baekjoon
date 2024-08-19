@@ -18,3 +18,32 @@ public class Main {
 
     }
 }
+
+//컴파일에러문제, 문자열인데 배열을 쓴문제 등 다수 문제 발생
+
+//2차시도
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	//첫번째 숫자를 읽고, for문으로 숫자개수만큼 돌린다.
+        int a = Integer.parseInt(br.readLine());
+        for (int i = 0; i < a; i++) {
+            //각 줄을 string, 문자열로 읽고 저장후에
+            String b = br.readLine();
+            
+            // 첫 번째 알파벳과 마지막 알파벳을 출력
+            char first = b.charAt(0);
+            char last = b.charAt(b.length() - 1);
+            System.out.println(first + "" + last);
+        }
+        
+        br.close();
+
+    }
+}
